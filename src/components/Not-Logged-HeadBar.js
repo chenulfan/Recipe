@@ -10,8 +10,8 @@ class NotLogedHeadBar extends Component {
             <nav>
                 <div className="nav-wrapper">
                     <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li> <Link to="/" > Home </Link> </li>
-                        <li> <Link to="/login" > Login </Link> </li>
+                        <li> <Link to="/" className="head-link"> Home </Link> </li>
+                        <li > <Link to="/login" className="head-link "> Login </Link> </li>
                     </ul>
                 </div>
             </nav>

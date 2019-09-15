@@ -53,7 +53,7 @@ export default class Ingredient{
         this.steps = []
         this.amount = ''
         this.amounts = []
-        this.url= ''
+        this.url= 'http://www.sclance.com/pngs/image-placeholder-png/image_placeholder_png_698412.png'
         this.progress = 0
     }
 }

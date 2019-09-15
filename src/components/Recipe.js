@@ -67,6 +67,9 @@ class Recipe extends Component {
                 this.whoLiked()
             }
         }
+        else {
+            alert("You must sign to like a recipe")
+        }
     }
     checkLiked = async () => {
         if (localStorage.user) {
@@ -94,7 +97,7 @@ class Recipe extends Component {
     delete = async () => {
         const recipe = this.props.recipe
         if (window.confirm("Are you sure you want to delete the recipe ?")) {
-            await Axios.delete(`http://localhost:3030/delete/user/post/${recipe._id}`)
+            await Axios.delete(`http://localhost:3030/delete/user/post/${recipe._id}/${localStorage.user}`)
             // this.props.getFromDB()
             this.props.landing.getUserRecipesFromDB()
         }

@@ -1,6 +1,13 @@
 body{
   background: #F3F3F3
 }
+.nav-wrapper{
+  background: rgba(159, 182, 185, 0.952);
+}
+.head-link{
+  color:rgba(0, 0, 0, 0.644);
+  font-weight: 700;
+}
 .container-recipes{
   margin: 20px 110px;
   display: grid;
@@ -539,13 +546,13 @@ textarea{
 }
 .profile-popup{
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   position: absolute;
   right: 16px;
   top: 80px;
   width:200px;
   padding-left: 12px;
-  height: 200px;
+  height: 250px;
   border-radius: 15px;
   border-top-right-radius: 5px;
   background: rgb(214, 216, 231);

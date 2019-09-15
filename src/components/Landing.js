@@ -27,22 +27,8 @@ class Landing extends Component {
         return (
             <div>
                 <div className="container-recipes ">
-                    <div className="recipe " >
-                        <img src="https://static.hashulchan.co.il/www/uploads/2019/09/adashim-shorot-arisa-batata_n-400x400.jpg"></img>
-                        <div className="sub-container-recipe">
-                            <div className="header-details-recipe" > Cherry Pie </div>
-                            <div className="container-details-recipe">
-                                <span className="detail-recipe" > 10 minutes </span>
-                                <span  > | </span>
-                                <span className="detail-recipe" > easy </span>
-                                <span  > | </span>
-                                <span className="detail-recipe" > Vegan </span>
-                                <span  > | </span>
-                                <span className="detail-recipe" > Great </span>
-                            </div>
-                        </div>
-                        <div className="inside-box-header" > Recipe </div>
-                    </div>
+
+
                     {this.props.landing.getRecipes.length > 0 ? this.props.landing.getRecipes.map(r => <Recipe recipe={r} />) : null}
 
                 </div>

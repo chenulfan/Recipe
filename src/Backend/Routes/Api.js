@@ -140,9 +140,20 @@ Api.get("/recipes/user/:userID", async function(req,res){
     })
 })
 
-Api.delete("/delete/user/post/:postID", function(req,res){
-    Recipe.findByIdAndRemove(req.params.postID).exec(function(err,respond){
-        res.send(req.params.postID)
+Api.delete("/delete/user/post/:postID/:userID", function(req,res){
+    console.log(req.params.postID)
+    console.log(req.params.userID)
+    const postID =req.params.postID
+    Recipe.findByIdAndRemove(postID).exec(function(err,respond){
+        
+    })
+    User.findOne({ID: req.params.userID}).exec(function(err, user){
+        console.log(user.likes)
+        user.likes = user.likes.filter( l => JSON.stringify(l) !== JSON.stringify(postID) )
+        user.recipes = user.recipes.filter( r => JSON.stringify(r) !== JSON.stringify(postID))
+        console.log(user)
+        user.save()
+        res.end()
     })
 })
 
@@ -155,7 +166,7 @@ Api.post('/send/email', (req, res) => {
         port: 25,
         auth: {
             user: 'chenulfan961@gmail.com',
-            pass: '123456789',
+            pass: 'chen961123',
         },
         tls: { rejectUnauthorized: false }
     }
