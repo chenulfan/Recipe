@@ -166,7 +166,7 @@ Api.post('/send/email', (req, res) => {
         port: 25,
         auth: {
             user: 'chenulfan961@gmail.com',
-            pass: 'chen961123',
+            pass: '',
         },
         tls: { rejectUnauthorized: false }
     }
