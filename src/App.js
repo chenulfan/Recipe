@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import { observer, inject } from 'mobx-react'
+import LogedHeadBar from './components/Loged-HeadBar'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import Landing from './components/Landing';
+import Log from './components/Log';
+import firebase from './Firebase';
+import Login from './components/Login-page';
+import Register from './components/Register';
+import Upload from './components/Upload-page';
+import NotLogedHeadBar from './components/Not-Logged-HeadBar';
+import Recipes from './components/Edit/Recipes';
+
+
+
+
+
+@inject("auth")
+@observer
+
+class App extends Component {
+
+  componentDidMount() {
+    this.authListener();
+  }
+  authListener = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+      //  console.log(user);
+      if (user) {
+        this.props.auth.changeUser(user)
+        localStorage.setItem('user', user.uid);
+      } else {
+        this.props.auth.logout(user)
+        localStorage.removeItem('user');
+      }
+    });
+  }
+
+
+  render() {
+    return (
+      <Router>
+        {this.props.auth.logedUser ?
+          (
+            <div>
+              <LogedHeadBar />
+              <Route exact path='/' render={() => <Landing />} />
+              <Route exact path='/login' render={() => <Landing />} />
+              <Route exact path='/edit/recipes' render={() => <Recipes />} />
+              <Route exact path='/recipe/upload' render={() => <Upload />} />
+            </div>
+          ) :
+          <div>
+            <NotLogedHeadBar />
+            <Route exact path='/' render={() => <Landing />} />
+            <Route exact path='/login' render={() => <Login />} />
+            <Route exact path='/register' render={() => <Register />} />
+          </div>
+        }
+      </Router>
+
+    )
+  }
 }
 
 export default App;
